@@ -14,13 +14,21 @@ def main():
     pygame.init()
     screen = pygame.display.set_mode(windowSize)
     max_frame_rate = 60
-    dashboard = Dashboard("img/font.png", 8, screen)
+    dashboard = Dashboard("./img/font.png", 8, screen)
     sound = Sound()
     level = Level(screen, sound, dashboard)
     menu = Menu(screen, dashboard, level, sound)
 
-    while not menu.start:
-        menu.update()
+    # while not menu.start:
+    #     menu.update()
+    
+    menu.levelNames = menu.loadLevelNames()
+    menu.inChoosingLevel = False
+    menu.dashboard.state = "start"
+    menu.dashboard.time = 0
+    menu.level.loadLevel(menu.levelNames[0])
+    menu.dashboard.levelName = menu.levelNames[menu.currSelectedLevel-1].split("Level")[1]
+    menu.start = True
 
     mario = Mario(0, 0, level, screen, dashboard, sound)
     clock = pygame.time.Clock()

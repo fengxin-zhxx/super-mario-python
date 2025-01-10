@@ -39,8 +39,12 @@ class Collider:
             ]
         except Exception:
             try:
+                
+                print("Entity pos index: {}".format(self.entity.getPosIndex().y))
+                print("len(self.level): {}".format(len(self.level)))
                 self.entity.gameOver()
             except Exception:
+                print("!!!")
                 self.entity.alive = None
             return
         for row in rows:

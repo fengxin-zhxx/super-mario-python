@@ -190,6 +190,7 @@ class Level:
         )
 
     def addGoomba(self, x, y):
+        print("Adding Goomba at x:{} y:{}".format(x, y))
         self.entityList.append(
             Goomba(self.screen, self.sprites.spriteCollection, x, y, self, self.sound)
         )

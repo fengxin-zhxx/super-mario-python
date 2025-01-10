@@ -37,7 +37,7 @@ bigAnimation = Animation(
 class Mario(EntityBase):
     def __init__(self, x, y, level, screen, dashboard, sound, gravity=0.8):
         super(Mario, self).__init__(x, y, gravity)
-        self.camera = Camera(self.rect, self)
+        self.camera = Camera(self.rect, self, level.levelLength)
         self.sound = sound
         self.input = Input(self)
         self.inAir = False
@@ -150,6 +150,7 @@ class Mario(EntityBase):
         self.dashboard.points += 100
 
     def gameOver(self):
+        print("Game Over in Mario")
         srf = pygame.Surface((640, 480))
         srf.set_colorkey((255, 255, 255), pygame.RLEACCEL)
         srf.set_alpha(128)
