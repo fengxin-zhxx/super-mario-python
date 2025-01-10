@@ -21,6 +21,7 @@ class Level:
         self.level = None
         self.levelLength = 0
         self.entityList = []
+        self.mario_state = None
 
     def loadLevel(self, levelname):
         with open("./levels/{}.json".format(levelname)) as jsonData:
@@ -28,8 +29,18 @@ class Level:
             self.loadLayers(data)
             self.loadObjects(data)
             self.loadEntities(data)
+            self.loadMario(data)
             self.levelLength = data["length"]
 
+    def loadMario(self, data):
+        if get_with_warning(data["level"], "Mario", None) is None:
+            return
+        
+        self.mario_state = {
+            "position" : get_with_warning(data["level"]["Mario"], "position", (0, 0)),
+            # TODO more mario states
+        }
+        
     def loadEntities(self, data):
         try:
             [self.addCoinBox(x, y) for x, y in data["level"]["entities"]["CoinBox"]]
