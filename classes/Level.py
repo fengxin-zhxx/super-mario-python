@@ -33,11 +33,13 @@ class Level:
             self.levelLength = data["length"]
 
     def loadMario(self, data):
-        if get_with_warning(data["level"], "Mario", None) is None:
+        # if get_with_warning(data["level"], "Mario", None) is None:
+        if "Mario" not in data["level"]:
             return
         
         self.mario_state = {
-            "position" : get_with_warning(data["level"]["Mario"], "position", (0, 0)),
+            # "position" : get_with_warning(data["level"]["Mario"], "position", (0, 0)),
+            "position" : data["level"]["Mario"]["position"] if "position" in data["level"]["Mario"] else (0, 0),
             # TODO more mario states
         }
         
