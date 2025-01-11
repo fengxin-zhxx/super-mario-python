@@ -26,8 +26,8 @@ def main():
     menu.inChoosingLevel = False
     menu.dashboard.state = "start"
     menu.dashboard.time = 0
-    menu.level.loadLevel(menu.levelNames[0])
-    menu.dashboard.levelName = menu.levelNames[menu.currSelectedLevel-1].split("Level")[1]
+    menu.level.loadLevel(menu.levelNames[8])
+    menu.dashboard.levelName = menu.levelNames[menu.currSelectedLevel-1].split("Level")[0]
     menu.start = True
 
     mario = Mario(0, 0, level, screen, dashboard, sound)
